@@ -25,14 +25,14 @@ export default function Header() {
           type="text"
           placeholder="Search ... "
           rightIcon={AiOutlineSearch}
-          className="hidden lg:inline "
+          className="hidden lg:inline outline-none"
         />
       </form>
       <Button className="w-12 h-10 lg:hidden" color="gray">
         <AiOutlineSearch />
       </Button>
       <div className="flex gap-2 md:order-2">
-        <Button color="gray" className="w-12 h-10 hidden sm:inline">
+        <Button className=" h-10 hidden sm:inline " color="gray">
           <FaMoon />
         </Button>
         <Link to="/signin">
