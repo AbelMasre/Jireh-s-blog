@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
-import { PiUserCircle } from "react-icons/pi";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme } from "../redux/theme/themeSlice";
 
 export default function Header() {
   const path = useLocation().pathname;
   const { currentUser } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
 
   // console.log(currentUser.profilePicture);
 
@@ -36,7 +38,11 @@ export default function Header() {
         <AiOutlineSearch />
       </Button>
       <div className="flex gap-2 md:order-2">
-        <Button className=" h-10 hidden sm:inline " color="gray">
+        <Button
+          onClick={() => dispatch(toggleTheme())}
+          className=" h-10 hidden sm:inline "
+          color="gray"
+        >
           <FaMoon />
         </Button>
         {currentUser ? (
@@ -56,7 +62,7 @@ export default function Header() {
             <Link to={"/dashboard?tab=profile"}>
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
-            <Dropdown.Divider/>
+            <Dropdown.Divider />
             <Dropdown.Item>Sign Out</Dropdown.Item>
           </Dropdown>
         ) : (
