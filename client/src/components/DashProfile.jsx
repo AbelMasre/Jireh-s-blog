@@ -101,7 +101,11 @@ export default function DashProfile() {
           {imageFileUploadProgress && (
             <CircularProgressbar
               value={imageFileUploadProgress || 0}
-              text={`${imageFileUploadProgress}%`}
+              text={
+                imageFileUploadProgress < 100
+                  ? `${imageFileUploadProgress}%`
+                  : ""
+              }
               strokeWidth={5}
               styles={{
                 root: {
