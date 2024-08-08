@@ -16,22 +16,21 @@ export default function Header() {
 
   // console.log(currentUser.profilePicture);
 
-    const handleSignout = async () => {
-      try {
-        const res = await fetch("/api/user/signout", {
-          method: "POST",
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          console.log(data.message);
-        } else {
-          dispatch(signoutSuccess());
-        }
-      } catch (error) {
-        console.log(error.message);
+  const handleSignout = async () => {
+    try {
+      const res = await fetch("/api/user/signout", {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signoutSuccess());
       }
-    };
-
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <Navbar className="border-b-2">
