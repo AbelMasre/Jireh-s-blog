@@ -155,7 +155,7 @@ export default function DashboardComp() {
         </div>
       </div>
       <div className="flex flex-wrap gap-4 py-3 md:mx-auto justify-center">
-        <div className="flex flex-col w-full lg:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
+        <div className="flex flex-col w-full md:flex-1  shadow-md p-2 rounded-md dark:bg-gray-800">
           <div className="flex justify-between p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent Users</h1>
             <Button gradientDuoTone="purpleToPink" outline>
@@ -184,7 +184,7 @@ export default function DashboardComp() {
               ))}
           </Table>
         </div>
-        <div className="flex flex-col w-full lg:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
+        <div className="flex flex-col w-full md:flex-1  shadow-md p-2 rounded-md dark:bg-gray-800">
           <div className="flex justify-between  p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent comments</h1>
             <Button outline gradientDuoTone="purpleToPink">
@@ -209,7 +209,7 @@ export default function DashboardComp() {
               ))}
           </Table>
         </div>
-        <div className="flex flex-col w-full lg:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
+        <div className="flex flex-col w-full md:flex-1  shadow-md p-2 rounded-md dark:bg-gray-800">
           <div className="flex justify-between  p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent posts</h1>
             <Button outline gradientDuoTone="purpleToPink">
