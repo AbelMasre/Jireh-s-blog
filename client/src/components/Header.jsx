@@ -1,6 +1,6 @@
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
@@ -9,10 +9,27 @@ import { toggleTheme } from "../redux/theme/themeSlice";
 import { signoutSuccess } from "../redux/user/user.Slice";
 
 export default function Header() {
+  const dispatch = useDispatch();
+const location = useLocation()
+const navigate = useNavigate()
   const path = useLocation().pathname;
   const { currentUser } = useSelector((state) => state.user);
+  const {theme} = useSelector((state)=>state.theme)
 
-  const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState('')
+
+
+  console.log(searchTerm);
+  
+
+  useEffect(()=> {
+    const urlParams = new URLSearchParams(location.search)
+    const searchTermFromUrl = urlParams.get('searchTerm')
+    if(searchTermFromUrl){
+      setSearchTerm(searchTermFromUrl)
+    }
+
+  },[location.search])
 
   // console.log(currentUser.profilePicture);
 
@@ -32,6 +49,14 @@ export default function Header() {
     }
   };
 
+const handleSubmit = (e) =>{
+  e.preventDefault()
+  const urlParams = new URLSearchParams(location.search)
+  urlParams.set('searchTerm', searchTerm)
+  const searchQuery = urlParams.toString()
+  navigate(`/search?${searchQuery}`)
+}
+
   return (
     <Navbar className="border-b-2">
       <Link
@@ -43,12 +68,14 @@ export default function Header() {
         </span>{" "}
         Blog
       </Link>
-      <form>
+      <form onSubmit={handleSubmit}>
         <TextInput
           type="text"
           placeholder="Search ... "
           rightIcon={AiOutlineSearch}
           className="hidden lg:inline outline-none"
+          value={searchTerm}
+          onChange={(e)=> setSearchTerm(e.target.value)}
         />
       </form>
       <Button className="w-12 h-10 lg:hidden" color="gray">
